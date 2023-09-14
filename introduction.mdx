@@ -1,0 +1,22 @@
+---
+title: "Introduction"
+---
+
+To authenticate calls to the API, pass your Faire API access token as an HTTP request header named "X-FAIRE-ACCESS-TOKEN".
+
+You can test that your Faire API access token is working correctly by running the following command.
+
+```bash 
+curl 'https://www.faire.com/external-api/v2/brands/profile' -H 'X-FAIRE-ACCESS-TOKEN: {your access token}'
+```
+
+It should return the profile for the brand account the access token is for.
+
+Please always check the HTTP status code returned from any API request. This API will return a status code between 200 and 299 when a request is successful. In any event that the request was not completed, an error code between 400 and 599 will be returned.
+
+<Card title="What's New" icon="megaphone" href="changelog">
+  See our Changelog
+</Card>
+
+This is documentation for V2 of the external API. For V1, visit External API V1.
+

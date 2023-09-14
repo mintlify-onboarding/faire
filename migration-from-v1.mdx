@@ -1,0 +1,66 @@
+---
+title: "Migrating from the v1 API"
+description: "This section covers the breaking changes to the API we have made that you will need to update your code to support."
+---
+
+## Breaking changes
+
+We feel these changes will make the API more stable and easier to use going forward. We take breaking changes seriously and do not plan to have so many breaking changes in future API releases. We want to get the most painful changes out of the way as soon as possible so future API upgrades will be simple.
+
+## Changes to terminology
+
+Our v1 API used non-standard terminology for product variant and product variant options. We used the terms product options and variations, respectively (nearly an inverse of what is used elsewhere). We have chosen to correct the terminology in the v2 API release.
+
+## Product Changes: v1 to v2
+
+### Major API changes
+
+- Several field changes. See below.
+- Preorders are part of the API! See Products.
+- Prepacks are part of the API! See Prepacks.
+- The batch product creation API has been removed.
+- The get all product categories API has been removed.
+- Product variant option names (formerly variations) cannot be changed.
+- URL paths now start with `https://www.faire.com/external-api/v2` instead of `https://www.faire.com/api/v1`.
+
+### Product field changes
+
+The following fields have been changed with products.
+
+| Field Name            | Change Type      | Details                                                                                                                                                                      |
+|-----------------------|------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| lifecycle_state       | Added            | The `DELETED` state used to be a potential `sales_state` value.                                                                                                                  |
+| sale_state            | Modified         | The only values are now `FOR_SALE` and `SALES_PAUSED`.                                                                                                                           |
+| wholesale_price_cents | Removed          | This field never really made sense. Product variants are the physical item and are often priced differently.                                                                 |
+| retail_price_cents    | Removed          | This field never really made sense. Product variants are the physical item and are often priced differently.                                                                 |
+| active                | Removed          | Replaced by `lifecycle_state`.                                                                                                                                                 |
+| deleted               | Removed          | Replaced by `lifecycle_state`.                                                                                                                                                 |
+| variant_option_sets   | Renamed/Modified | Replaces `variation_map`. It now must be specified during product creation. The JSON structure is now an ordered list of variant options instead of an object acting as a map. |
+| options               | Renamed          | Renamed to variants.                                                                                                                                                         |
+| categories            | Removed          | No longer used.                                                                                                                                                              |
+| preorderable          | Added            | New v2 API feature. See Products.                                                                                                                                            |
+| preorder_details      | Added            | New v2 API feature. See Products.                                                                                                                                            |
+| prepacks              | Added            | New v2 API feature. See Prepacks.                                                                                                                                            |
+
+## Variant Changes: v1 to v2
+
+### Major API changes
+
+- Several field changes. See below.
+- Product variant option values (formerly variations) cannot be changed.
+
+### Variant field changes
+
+| lifecycle_state | Added            | The `DELETED` state used to be a potential `sale_state` value. |
+|-----------------|------------------|------------------------------------------------------------|
+| sale_state      | Modified         | The only values are now `FOR_SALE` and `SALES_PAUSED`.         |
+| active          | Removed          | Replaced by `lifecycle_state`.                               |
+| deleted         | Removed          | Replaced by `lifecycle_state`.                               |
+| variations      | Renamed/Modified | Renamed to `options`.                                        |
+
+## Timestamp Format Changed: v1 to v2
+
+In the v1 API, our timestamps were in the basic format of ISO 8601. We decided to use the extended format of ISO 8601 for all timestamps in the v2 API.
+
+For example, "20190314T000915.000Z" in the v1 API will become "2019-03-14T00:09:15.000Z" in the v2 API.
+

@@ -1,0 +1,42 @@
+{
+    "name": "Faire",
+    "logo": {
+      "light": "/logo/light.png",
+      "dark": "/logo/dark.png"
+    },
+    "favicon": "/favicon.png",
+    "colors": {
+      "primary": "#0E0E0E",
+      "light": "#FAFAFA",
+      "dark": "#0E0E0E"
+    },
+    "topbarCtaButton": {
+      "type": "github",
+      "url": "https://github.com/Faire"
+    },
+    "tabs": [
+        {
+            "name": "Changelog",
+            "url": "changelog"
+        }
+    ],
+    "navigation": [
+      {
+        "group": "Getting Started with Faire",
+        "pages": [
+            "introduction",
+            "migration-from-v1",
+            "key-definitions"
+        ]
+      },
+      {
+        "group": "Changelog",
+        "pages": ["changelog/overview"]
+      }
+    ],
+    "footerSocials":
+      {
+          "twitter": "https://twitter.com/faire_wholesale?lang=en",
+          "linkedin": "https://www.linkedin.com/company/fairewholesale/"
+      }
+  }
